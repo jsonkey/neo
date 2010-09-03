@@ -1,0 +1,130 @@
+#!/usr/bin/python -u
+#-*- coding: UTF-8 -*-
+# vi:ts=4:et
+##==========================================================================
+##
+##  Copyright (c) Tudou Inc. All Rights Reserved.
+##
+##--------------------------------------------------------------------------
+##
+##  File:        $Workfile: setting.py$
+##               $Revision: 1$
+##
+##  Last Update: $DateTue Feb 24 15:51:10 CST 2009$
+##
+##--------------------------------------------------------------------------
+##
+
+import os
+import re
+import sys
+import time
+import random
+import socket
+
+# set timeout for socket
+socket.setdefaulttimeout(30)
+
+#
+# curpath
+curpath=os.path.normpath(os.path.join(os.getcwd(),os.path.dirname(__file__)))
+
+def get_storage_left(storage_root=None):
+    import os
+    import statvfs
+    #STORAGE_ROOT={"/tudou/0":500, "/tudou/1":500}
+    G=lambda path: os.statvfs(path)[statvfs.F_BAVAIL]*os.statvfs(path)[statvfs.F_BSIZE]/(1024*1024*1024)
+    return dict([(e, G(e)) for e in storage_root])
+    
+
+app_dir=re.sub(r'\/\w+$', '', curpath)
+# touch /tudou/index.html
+try:
+    os.system("touch /tudou/index.html")
+except:
+    pass
+
+#
+#SYNC = True
+SYNC = False
+
+#DEV=True
+DEV=False
+
+#
+if DEV: # testing env
+    # proxy
+    PROXY=None
+    # server info
+    HOSTNAME="10.5.22.102"
+    #HOSTNAME="localhost"
+    PORT    ="8080"
+    BASEURI_NEWJOB = SYNC and "/mps/InspectSyncerServlet?hostname=%s"%(socket.gethostname()) or "/mps/WorkerServlet?hostname=%s"%(socket.gethostname())      # for main
+    # version
+    versions="0.2"
+    # sleep n , for post to server
+    VISIT_TIME=5              # vist server by time.
+    TIMEOUT=24*60*60          # when report results error, so keep tasks in client time.
+    MAX_PROCESS=200           # MAX process
+    LIMIT_CPU  =("encode",)   # limit cpu used.
+    min_space_left_in_giga=50 # G
+    dplayer_STORAGE_ROOT={"/tudou":0} # dplayer storage root path by G.
+    dmps_STORAGE_ROOT={"/tudou/0":0,\
+                       "/tudou/1":0,\
+                       "/tudou/2":0,\
+                       }      # dmps storage root path by G.
+    STORAGE_ROOT = get_storage_left(SYNC and dplayer_STORAGE_ROOT or dmps_STORAGE_ROOT)
+    # dplayer
+    dplayer_SERVER={"/tudou":"http://origin-player%s.tudou.com/"%("%04d"%int(re.search(r"\d+", socket.gethostname().split("_")[0]).group())),\
+                    }
+    #
+    App={"ls":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "ls", "listDir.py")),\
+         "pic":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "encoder", "encoder", "getImage.py")),\
+         "encode":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "encoder", "encoder", "gnuEncode.py")),\
+         "analyze_src":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "encoder", "encoder", "check_type.py")),\
+         "delete":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "store", "del_files.py")),\
+         "move":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "store", "move_file.py")),\
+         "download":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "store", "add_files.py")),\
+         "pub_pic":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "upload_pic", "pub_pic.py")),\
+         "copy_pic":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "upload_pic", "copy_pic.py")),\
+         "health":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "health", "osinfo.py")),\
+         "kill":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "health", "kill_pid.py")),\
+         "monitor":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "health", "td_monitor.py")),\
+         }
+    #
+    #
+else: # on line
+    # proxy
+    PROXY= SYNC and ["10.24.26.201:3128", "10.24.26.202:3128"] or None
+    # server info
+    HOSTNAME="ulpc.tudou.com"
+    PORT    ="80"
+    BASEURI_NEWJOB = SYNC and "/mps3/InspectSyncerServlet?hostname=%s"%(socket.gethostname()) or "/mps3/WorkerServlet?hostname=%s"%(socket.gethostname())      # for main
+    # version
+    versions="0.2"
+    # sleep n , for post to server
+    VISIT_TIME=5              # vist server by time.
+    TIMEOUT=24*60*60          # keep task in cmdStatus time.
+    MAX_PROCESS=200           # MAX process
+    LIMIT_CPU  =("encode",)   # limit cpu used.
+    min_space_left_in_giga=50 # G
+    dplayer_STORAGE_ROOT={"/tudou":0} # dplayer storage root path by G.
+    dmps_STORAGE_ROOT={"/tudou":0}      # dmps storage root path by G.
+    STORAGE_ROOT = get_storage_left(SYNC and dplayer_STORAGE_ROOT or dmps_STORAGE_ROOT)
+    # dplayer
+    dplayer_SERVER={"/tudou":"http://origin-player%s.tudou.com/"%("%04d"%int(re.search(r"\d+", socket.gethostname().split("_")[0]).group())),\
+                    }
+    #
+    App={"ls":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "ls", "listDir.py")),\
+         "pic":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "encoder", "encoder", "getImage.py")),\
+         "encode":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "encoder", "encoder", "gnuEncode.py")),\
+         "analyze_src":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "encoder", "encoder", "check_type.py")),\
+         "delete":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "store", "del_files.py")),\
+         "move":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "store", "move_file.py")),\
+         "download":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "store", "add_files.py")),\
+         "pub_pic":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "upload_pic", "pub_pic.py")),\
+         "copy_pic":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "upload_pic", "copy_pic.py")),\
+         "health":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "health", "osinfo.py")),\
+         "kill":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "health", "kill_pid.py")),\
+         "monitor":"/usr/bin/python %s"%(os.path.join(app_dir, "app", "health", "td_monitor.py")),\
+         }

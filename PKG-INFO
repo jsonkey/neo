@@ -1,0 +1,15 @@
+Metadata-Version: 1.0
+Name: neo
+Version: 1.0.0
+Summary: Simple, fast, flex, for CDN node agent.
+Home-page: http://www.cncodec.com/
+Author: Tommy Bao
+Author-email: tommy@cncodec.com
+License: cncodec License
+Description: 
+        
+Platform: any
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: cncodec License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

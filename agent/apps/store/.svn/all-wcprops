@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/repository/mps3/!svn/ver/816/trunk/Client/app/store
+END
+json.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/repository/mps3/!svn/ver/48/trunk/Client/app/store/json.py
+END
+add_files.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repository/mps3/!svn/ver/816/trunk/Client/app/store/add_files.py
+END
+td_shell.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/repository/mps3/!svn/ver/285/trunk/Client/app/store/td_shell.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repository/mps3/!svn/ver/48/trunk/Client/app/store/__init__.py
+END
+move_file.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repository/mps3/!svn/ver/732/trunk/Client/app/store/move_file.py
+END
+del_files.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/repository/mps3/!svn/ver/732/trunk/Client/app/store/del_files.py
+END

@@ -1,0 +1,35 @@
+[2010-08-31 21:11:23,680][DEBUG] Piece00: Start downloading
+[2010-08-31 21:11:23,681][DEBUG] Piece01: Start downloading
+[2010-08-31 21:11:23,683][DEBUG] Piece02: Start downloading
+[2010-08-31 21:11:23,683][DEBUG] Piece03: Start downloading
+[2010-08-31 21:11:23,683][DEBUG] Piece04: Start downloading
+[2010-08-31 21:11:23,684][DEBUG] Piece05: Start downloading
+[2010-08-31 21:11:23,684][DEBUG] Piece06: Start downloading
+[2010-08-31 21:11:23,684][DEBUG] Piece07: Start downloading
+[2010-08-31 21:11:23,684][DEBUG] Piece08: Start downloading
+[2010-08-31 21:11:23,684][DEBUG] Piece09: Start downloading
+[2010-08-31 21:12:00,634][ERROR] Piece00: Download failed<transfer closed with 484773 bytes remaining to read>
+[2010-08-31 21:12:00,634][WARNING] Piece00: Try again
+[2010-08-31 21:12:08,605][INFO] Piece06: Download successed
+[2010-08-31 21:12:08,605][DEBUG] Piece06: Download 540566 out of 540566
+[2010-08-31 21:12:09,482][INFO] Piece02: Download successed
+[2010-08-31 21:12:09,482][DEBUG] Piece02: Download 540566 out of 540566
+[2010-08-31 21:12:21,645][INFO] Piece01: Download successed
+[2010-08-31 21:12:21,647][DEBUG] Piece01: Download 540566 out of 540566
+[2010-08-31 21:12:24,180][INFO] Piece05: Download successed
+[2010-08-31 21:12:24,180][DEBUG] Piece05: Download 540566 out of 540566
+[2010-08-31 21:12:43,217][INFO] Piece03: Download successed
+[2010-08-31 21:12:43,217][DEBUG] Piece03: Download 540566 out of 540566
+[2010-08-31 21:12:52,895][INFO] Piece07: Download successed
+[2010-08-31 21:12:52,895][DEBUG] Piece07: Download 540566 out of 540566
+[2010-08-31 21:12:57,082][INFO] Piece08: Download successed
+[2010-08-31 21:12:57,084][DEBUG] Piece08: Download 540566 out of 540566
+[2010-08-31 21:12:59,135][INFO] Piece00: Download successed
+[2010-08-31 21:12:59,135][DEBUG] Piece00: Download 540566 out of 540566
+[2010-08-31 21:13:17,380][INFO] Piece09: Download successed
+[2010-08-31 21:13:17,380][DEBUG] Piece09: Download 540557 out of 540557
+[2010-08-31 21:13:37,312][ERROR] Piece04: Download failed<transfer closed with 169422 bytes remaining to read>
+[2010-08-31 21:13:37,312][WARNING] Piece04: Try again
+[2010-08-31 21:14:09,234][INFO] Piece04: Download successed
+[2010-08-31 21:14:09,234][DEBUG] Piece04: Download 540566 out of 540566
+[2010-08-31 21:14:09,236][INFO] Download Successed! Total Elapsed 165s
